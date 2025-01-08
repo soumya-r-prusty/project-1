@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+      <section class="box">
+             <header>
+                <h1>Registration form</h1>
+            </header>
+             <form action="/action" class="form">
+                <div class="out-box">
+                    <div class="input-box">
+                        <label for="fname">First Name</label>
+                        <input type="text" id="fname" name="nfame" placeholder="First Name" required autofocus/>
+                     </div>
+                     <div class="input-box">
+                        <label for="lname">Last Name</label>
+                        <input type="text" id="lname" name="lname" placeholder="Last Name" required autofocus/>
+                     </div>
+                </div>
+                 <div class="input-box">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required autofocus/>
+                 </div>
+                </div>
+                <div class="out-box">
+                    <div class="input-box">
+                        <label for="dob">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" placeholder="Date of Birth" required autofocus/>
+                     </div>
+                     <div class="input-box">
+                        <label for="pnum">Phone Number</label>
+                        <input type="text" id="pnum" name="pnum" placeholder="Phone Number" required autofocus>
+                     </div>
+                </div>
+                <div class="Gender-box">
+                    <h3>Gender</h3>
+                    <div class="gender-inner-box">
+                        <div class="gender-option">
+                            <label for="male">Male</label>
+                            <input type="radio" id="male" name="gender" selected/>
+                        </div>
+                        <div class="gender-option">
+                            <label for="female">Female</label>
+                            <input type="radio" id="female" name="gender" />
+                        </div>
+                        <div class="gender-option">
+                            <label for="others">Others</label>
+                            <input type="radio" id="others" name="gender" />
+                        </div>
+                    </div>
+                </div>
+                <div class="address">
+                    <h3>Address</h3>
+                    <div class="out-box">
+                        <div class="input-box">
+                            <label for="ci-village">City/Village</label>
+                            <input type="text" id="address" name="address" placeholder="Address" />
+                         </div>
+                         <div class="input-box">
+                            <label for="State">State</label>
+                            <input type="text" id="State" name="State" placeholder="State" />
+                         </div>
+                    </div>
+                </div>
+                 <div class="sh-pass">
+                    <div class="input-box">
+                        <label for="password"><b>Password</b></label>
+                        <input type="password" id="password" name="password" placeholder="password" required autofocus/>
+                     </div>
+                    <div class="ch-box">
+                        <input type="checkbox" />
+                        <label for="checkbox">show password</label>  
+                    </div>
+                </div>
+                 <div class="input-box">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm-password" autofocus/>
+                 </div>
+                 <div class="input-box">
+                    <input type="submit" value="Submit" />
+                 </div>
+             </form>
+      </section>
+</body>
+</html>
