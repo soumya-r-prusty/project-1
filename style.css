@@ -1,54 +1,50 @@
-*{
+* {
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    font-family: sans-serif;    
+    font-family: sans-serif;
 }
 
 
-body{
+body {
     min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    max-height: 100vh;
-    /* background-color: green; */
+    /* display: flex;
+    justify-content:center;
+    align-items: center; */
+    display: grid;
+    grid-template-columns: 3fr 2fr;
 }
 
-.box{
+.box {
     position: relative;
     max-width: 800px;
-    border: 1px solid black;
     width: 100%;
-    background-color: lightblue;
-    padding: 30px;
+    padding: 10px;
     border-radius: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+    cursor: grab;
+    opacity: 1;
+    box-shadow: 20px 10px 30px 30px rgb(185, 190, 192);
 }
 
-header{
-  font-weight: 20px;
+header {
+    font-weight: 700;
 }
 
-.box .form{
+.box .form {
     margin-top: 30px;
 }
 
-.form .input-box{
+.form .input-box {
     width: 100%;
     margin-top: 20px;
 }
 
-.input-box .label{
+.input-box label {
     color: black;
-    font: weight 1rem;
+    font-weight: 500;
 }
 
-.input-box input{
+.input-box input {
     position: relative;
     height: 50px;
     width: 100%;
@@ -58,60 +54,231 @@ header{
     margin-top: 10px;
     border-radius: 10px;
     border: 1px solid lightblue;
+    background-color: rgb(233, 229, 238);
+    transition: .75s;
 }
 
-.form .out-box{
+.select-box {
+    position: relative;
+    height: 50px;
+    width: 100%;
+    padding: 0 15px;
+    outline: none;
+    font-size: 1rem;
+    margin-top: 10px;
+    border-radius: 10px;
+    border: 1px solid lightblue;
+    background-color: rgb(233, 229, 238);
+    transition: .75s;
+}
+
+.form .out-box {
     display: flex;
     column-gap: 15px;
 }
 
-.Gender-box{
+.Gender-box {
     margin-top: 10px;
 }
-.gender-inner-box{
-  display: flex;
+
+.gender-inner-box {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    /* margin-top: 10px; */
+    /* margin-bottom: 10px; */
 }
-.gender-inner-box{
-    margin: 10px 0;
-    border: 1px solid white;
-    font-weight: 1rem;
+
+/* gender box gender option gender */
+.gender-option {
+    display: flex;
+    align-items: center;
+    column-gap: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    /* font-stretch: expanded; */
+    row-gap: 15px;
+    transition: 0.5s;
+}
+
+.gender-option:hover {
+    transform: scale(1.1);
+}
+
+
+.ch-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    margin-top: 30px;
+    padding: 10px;
+}
+
+.ch-box label {
+    margin: 0px 5px;
+    font-size: 1.1rem;
+    max-width: 100%;
+}
+
+.ch-box input {
+    transform: scale(1.03);
+}
+
+input:hover {
+    transform: scale(1.04);
+}
+
+.regform {
+    padding: 10px;
+    margin-top: 10px;
+    font-optical-sizing: none;
+    background-color: rgb(227, 224, 235);
+    transition: 1s;
+    text-align: center;
     border-radius: 10px;
-    display: flex;
-    justify-content:flex-start;
-    font-size: 1rem;
-    align-items: center;
-}
-.gender-option{
-    height: 30px;
-    font-size: 15px;
-    padding: 5px;
-    margin-right: 70px;
-    font-weight: 300;
-    font-stretch: expanded;
-    cursor: pointer;
+    font-family: 'Tahoma';
+    font: 2em Arial, sans-serif;
 }
 
-.sh-pass{
-    display: flex;
+.regform:hover {
+    transform: scale(1.04);
+    /* box-shadow: 5px 10px rgb(238, 228, 228,0.4); */
+}
+
+input[type=submit] {
+    background-color: #6337a0;
+    color: white;
+
+}
+
+.check-box {
     margin-top: 20px;
-    justify-content: center;
-    align-items: center;
-}
-.ch-box label{
-    margin-right: 10px;
-    padding-right: 10px;
-}
-.ch-box input{
-
 }
 
-@media screen and (max-width: 650px){
-    .out-box{
+
+
+/* Message Box */
+#message {
+    display: none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#message-email {
+    display: none;
+    background: #f1f1f1;
+    color: #000;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#phNum-sp {
+    display: none;
+    background-color: #f1f1f1;
+    color: black;
+    position: relative;
+    padding: 20px;
+    margin-top: 10px;
+}
+
+#phNum-sp p {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+#message-email p {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+#message p {
+    padding: 10px 35px;
+    font-size: 18px;
+}
+
+.valid {
+    color: green;
+}
+
+.valid:before {
+    position: relative;
+    left: -35px;
+    content: "✔";
+}
+
+.invalid {
+    color: red;
+}
+
+.invalid:before {
+    position: relative;
+    left: -35px;
+    content: "✖";
+}
+
+span {
+    color: red;
+}
+
+table,
+th,
+tr,
+td {
+    border: 1px solid black;
+
+}
+table{
+    border-collapse: collapse;
+}
+
+.table-div {
+    margin-left: 50px;
+    padding: 10px;
+    border: 2px solid black;
+    /* display: none; */
+}
+
+table>caption {
+    font-size: 2rem;
+}
+
+.red{
+    background-color: red;
+}
+.btn-prop{
+    width: 5rem;
+    height: 3rem;
+    color: white;
+    font-size: 1.1rem;
+}
+.green{
+    background-color: green;
+}
+@media screen and (max-width: 650px) {
+    .out-box {
         flex-wrap: wrap;
     }
 }
 
+@media screen and (max-width: 650px) {
+    .ch-box {
+        margin-top: 10px;
+        padding-top: 10px;
+    }
+}
 
-
-
-
+@media screen and (max-width: 650px) {
+    body {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .table-div{
+        margin-left: 0;
+        margin-top: 30px;
+    }
+}

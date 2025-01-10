@@ -1,90 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-      <section class="box">
-             <header>
-                <h1>Registration form</h1>
-            </header>
-             <form action="/action" class="form">
+    <section class="box">
+        <header class="regform">
+            Registration form
+        </header>
+        <form action="" class="form" onsubmit="return validateForm()" onreset="resetAll()" method="get" id="formsubmission" >
+            <div class="out-box">
+                <div class="input-box">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" name="fname" placeholder="First Name" autofocus/>
+                    <span id="fname-error" class="ferror-message"></span>
+                </div>
+                <div class="input-box" >
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" name="lname" placeholder="Last Name" autofocus />
+                    <span id="lname-error" class="lerror-message"></span>
+                </div>
+            </div>
+            <div class="input-box">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Email" autofocus />
+                <span id="email-error" class="dob-message"></span>
+                <div id="message-email">
+                    <h3>Password must contain the following:</h3>
+                    <p id="letter-no" class="invalid"><b>Must contain within 25</b> letters</p>
+                    <p id="sp-symbol" class="invalid"><b>Must contain @</b>gmail.com</p>
+                  </div>
+            </div>
+            </div>
+
+            <div class="out-box">
+                <div class="input-box">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob" name="dob" placeholder="Date of Birth" autofocus />
+                    <span id="dob-error" class="dob-message"></span>
+                </div>
+                <div class="input-box">
+                    <label for="pnum">Phone Number</label>
+                    <input type="text" id="pnum" name="pnum" placeholder="Phone Number" autofocus>
+                    <div id="phNum-sp">
+                        <h3>Phone Number criteria :</h3>
+                        <p id="phone-no" class="invalid"><b>Must contain 10</b> numbers</p>
+                        <p id="character-symbol" class="invalid"><b>Must not contain any character </b></p>
+                        <p id="empty-s" class="invalid"><b>Must not be empty</b></p>
+                      </div>
+                      <span id="p-error" class="pnum-message"></span>
+                </div>
+            </div>
+
+            <div class="Gender-box">
+                <h3>Gender</h3>
+                <div class="gender-inner-box">
+                    <div class="gender-option">
+                        <label for="male">Male</label>
+                        <input type="radio" id="male" name="gender" />
+                    </div>
+                    <div class="gender-option">
+                        <label for="female">Female</label>
+                        <input type="radio" id="female" name="gender" />
+                    </div>
+                    <div class="gender-option">
+                        <label for="others">Others</label>
+                        <input type="radio" id="others" name="gender" />
+                    </div>
+                </div>
+                <span id="gender-error" class="pnum-message"></span>
+            </div>
+            <div class="address">
+                <h3>Address</h3>
                 <div class="out-box">
                     <div class="input-box">
-                        <label for="fname">First Name</label>
-                        <input type="text" id="fname" name="nfame" placeholder="First Name" required autofocus/>
-                     </div>
-                     <div class="input-box">
-                        <label for="lname">Last Name</label>
-                        <input type="text" id="lname" name="lname" placeholder="Last Name" required autofocus/>
-                     </div>
+                        <label for="street-no">Street-no</label>
+                        <input type="number" id="street-no" name="street-no" placeholder="street-no" />
+                <span id="street-error" class="street-message"></span>
+                    </div>
+                    <div class="input-box">
+                        <label for="ci-village">City/Village</label>
+                        <input type="text" id="ci-village" name="ci-village" placeholder="City/Village" />
+                <span id="cv-error" class="vilmessage"></span>
+                    </div>
                 </div>
-                 <div class="input-box">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Email" required autofocus/>
-                 </div>
-                </div>
+
                 <div class="out-box">
                     <div class="input-box">
-                        <label for="dob">Date of Birth</label>
-                        <input type="date" id="dob" name="dob" placeholder="Date of Birth" required autofocus/>
-                     </div>
-                     <div class="input-box">
-                        <label for="pnum">Phone Number</label>
-                        <input type="text" id="pnum" name="pnum" placeholder="Phone Number" required autofocus>
-                     </div>
-                </div>
-                <div class="Gender-box">
-                    <h3>Gender</h3>
-                    <div class="gender-inner-box">
-                        <div class="gender-option">
-                            <label for="male">Male</label>
-                            <input type="radio" id="male" name="gender" selected/>
-                        </div>
-                        <div class="gender-option">
-                            <label for="female">Female</label>
-                            <input type="radio" id="female" name="gender" />
-                        </div>
-                        <div class="gender-option">
-                            <label for="others">Others</label>
-                            <input type="radio" id="others" name="gender" />
-                        </div>
+                        <label for="post-code" required>Postal-Code</label>
+                        <input type="text" id="post-code" name="post-code" placeholder="Post-code" />
+                        <span id="pcode-error" class="pcode-message"></span>
                     </div>
-                </div>
-                <div class="address">
-                    <h3>Address</h3>
-                    <div class="out-box">
-                        <div class="input-box">
-                            <label for="ci-village">City/Village</label>
-                            <input type="text" id="address" name="address" placeholder="Address" />
-                         </div>
-                         <div class="input-box">
-                            <label for="State">State</label>
-                            <input type="text" id="State" name="State" placeholder="State" />
-                         </div>
-                    </div>
-                </div>
-                 <div class="sh-pass">
                     <div class="input-box">
-                        <label for="password"><b>Password</b></label>
-                        <input type="password" id="password" name="password" placeholder="password" required autofocus/>
-                     </div>
-                    <div class="ch-box">
-                        <input type="checkbox" />
-                        <label for="checkbox">show password</label>  
+                        <label for="state">State</label>
+                        <input type="text" id="state" name="state" placeholder="State" />
+                        <span id="state-error" class="state-message"></span>
                     </div>
                 </div>
-                 <div class="input-box">
+
+                <div class="out-box">
+                    <div class="input-box">
+                        <label for="Country">Country</label>
+                        <select class="select-box" id="country">
+                            <option value="" disabled>Country</option>
+                            <option value="">India</option>
+                            <option value="">America</option>
+                            <option value="">Japan</option>
+                            <option value="">China</option>
+                            <option value="">Russia</option>
+                        </select>
+                    </div>
+                    <span id="country-error" class="country-message"></span>
+                    <div class="input-box">
+                        <label for="region">Region</label>
+                        <input type="text" id="region" name="region" placeholder="Region" />
+                    <span id="region-error" class="country-message"></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="input-box">
+                <label for="file">
+                    <h3>Enter your documnet</h3>
+                </label>
+                <input type="file" id="file" name="file" />
+                <span id="file-error" class="file-message"></span>
+            </div>
+            <div class="out-box">
+                <div class="input-box">
+                    <label for="password"><b>Password</b></label>
+                    <input type="password" id="password" name="password" placeholder="password" autofocus />
+                    <span id="pass-error" class="country-message"></span>
+
+                    <div id="message">
+                        <h3>Password must contain the following:</h3>
+                        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+                        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+                        <p id="number" class="invalid">A <b>number</b></p>
+                        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+                      </div>
+                </div>
+
+                <div class="ch-box">
+                    <input id="pass-box" type="checkbox" />
+                    <label for="checkbox">show password</label>
+                </div>
+            </div>
+
+            <div class="out-box">
+                <div class="input-box">
                     <label for="confirm-password">Confirm Password</label>
-                    <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm-password" autofocus/>
-                 </div>
-                 <div class="input-box">
-                    <input type="submit" value="Submit" />
-                 </div>
-             </form>
-      </section>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm-password"
+                        autofocus />
+                        <span id="cpass-error" class="cpass-message"></span>
+                </div>
+            </div>
+            <div class="check-box" aria-required="true">
+                <input type="checkbox" name="check-box" id="check-pass-box"/>
+                <label for="check-pass-box" id="repass-box">i agree with the <a href="/">terms and condition</a></label>
+                <span id="check-pass-error" class="check-pass-message"></span>
+            </div>
+            <div class="input-box">
+                <input type="submit" value="Submit" id="submit"/>
+            </div>
+        </form>
+    </section>
+
+
+    <div class="table-div">
+        <table style="width:100%" id="table">
+            <caption>My Details</caption>
+            <tbody>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Date of Birth</th>
+                    <th>Phone Number</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    
 </body>
+
+<script src="MyScript.js">
+</script>
+
+
 </html>
