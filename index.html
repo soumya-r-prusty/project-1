@@ -12,7 +12,7 @@
         <header class="regform">
             Registration form
         </header>
-        <form action="" class="form" onsubmit="return validateForm()" onreset="resetAll()" method="get" id="formsubmission" >
+        <form action="" class="form" onsubmit="event.preventDefault();  return validateForm(); " onreset="resetAll()" method="get" id="formsubmission" >
             <div class="out-box">
                 <div class="input-box">
                     <label for="fname">First Name</label>
@@ -28,12 +28,13 @@
             <div class="input-box">
                 <label for="email">Email</label>
                 <input type="email" id="email" name="email" placeholder="Email" autofocus />
-                <span id="email-error" class="dob-message"></span>
+               
                 <div id="message-email">
                     <h3>Password must contain the following:</h3>
-                    <p id="letter-no" class="invalid"><b>Must contain within 25</b> letters</p>
-                    <p id="sp-symbol" class="invalid"><b>Must contain @</b>gmail.com</p>
+                    <p id="letter-no" class="invalid"><b>Must contain within 30</b> letters</p>
+                    <p id="sp-symbol" class="invalid"><b>Must contain @</b></p>
                   </div>
+                  <span id="email-error" class="dob-message"></span>
             </div>
             </div>
 
@@ -49,7 +50,7 @@
                     <div id="phNum-sp">
                         <h3>Phone Number criteria :</h3>
                         <p id="phone-no" class="invalid"><b>Must contain 10</b> numbers</p>
-                        <p id="character-symbol" class="invalid"><b>Must not contain any character </b></p>
+                        <!-- <p id="character-symbol" class="invalid"><b>Must not contain any character </b></p> -->
                         <p id="empty-s" class="invalid"><b>Must not be empty</b></p>
                       </div>
                       <span id="p-error" class="pnum-message"></span>
@@ -96,25 +97,24 @@
                         <span id="pcode-error" class="pcode-message"></span>
                     </div>
                     <div class="input-box">
+                        <label for="Country">Country</label>
+                        <select class="select-box" id="country">
+                            <option value="">Select your country</option>
+                            <option value="amr">America</option>
+                            <option value="jpn">Japan</option>
+                            <option value="chi">China</option>
+                            <option value="russsia">Russia</option>
+                        </select>
+                <span id="country-error" class="country-message"></span>
+                    </div>
+                </div>
+                <div class="out-box">
+                    
+                    <div class="input-box">
                         <label for="state">State</label>
                         <input type="text" id="state" name="state" placeholder="State" />
                         <span id="state-error" class="state-message"></span>
                     </div>
-                </div>
-
-                <div class="out-box">
-                    <div class="input-box">
-                        <label for="Country">Country</label>
-                        <select class="select-box" id="country">
-                            <option value="" disabled>Country</option>
-                            <option value="">India</option>
-                            <option value="">America</option>
-                            <option value="">Japan</option>
-                            <option value="">China</option>
-                            <option value="">Russia</option>
-                        </select>
-                    </div>
-                    <span id="country-error" class="country-message"></span>
                     <div class="input-box">
                         <label for="region">Region</label>
                         <input type="text" id="region" name="region" placeholder="Region" />

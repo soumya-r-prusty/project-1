@@ -13,6 +13,7 @@ function validateForm() {
     const state = document.getElementById('state').value;
     const country = document.getElementById('country').value;
     const region = document.getElementById('region').value;
+    const file = document.getElementById('file');
     const password = document.getElementById('password').value;
     const confirmpassword = document.getElementById('confirm-password').value;
     const checkpassbox = document.getElementById('check-pass-box').checked;
@@ -29,6 +30,7 @@ function validateForm() {
     const stateErr = document.getElementById('state-error');
     const countryErr = document.getElementById('country-error');
     const regionErr = document.getElementById('region-error');
+    const fileErr = document.getElementById('file-error');
     const passErr = document.getElementById('pass-error');
     const cpassErr = document.getElementById('cpass-error');
     const checkpassErr = document.getElementById('check-pass-error');
@@ -47,6 +49,7 @@ function validateForm() {
     stateErr.textContent = "";
     countryErr.textContent = "";
     regionErr.textContent = "";
+    fileErr.textContent = "";
     passErr.textContent = "";
     cpassErr.textContent = "";
     checkpassErr.textContent = "";
@@ -68,10 +71,19 @@ function validateForm() {
     var upperCaseLetters = /[A-Z]/g;
     var numbers = /[0-9]/g;
 
-    var emailoption = email.split('@');
 
+    var emailoption = email.includes('@');
+
+    const filee = file.files[0];
+    if(filee != ""){
+        file.textContent = filee;
+    }
+
+    if (filee == true) {
+        toaster
+    }
     if (fname === "" || /\d/.test(fname)) {
-        fnameErr.textContent = "Please enter your First name properly.";
+        fnameErr.textContent = "Please enter your first name properly.";
         isvalid = false;
     }
     else if (lname === "" || /\d/.test(lname)) {
@@ -82,20 +94,24 @@ function validateForm() {
         emailErr.textContent = "Please enter your email";
         isvalid = false;
     }
-    else if (emailoption[1] != 'gmail.com') {
-        emailErr.textContent = "Please enter gmail.com properly";
+    else if (!emailoption) {
+        emailErr.textContent = "You must include '@' ";
+        isvalid = false;
+    }
+    else if (email.length >= 30) {
+        emailErr.textContent = "Your mail should be under 30 letters";
         isvalid = false;
     }
     else if (dob === "") {
-        dobErr.textContent = "Please Enter your Dob";
+        dobErr.textContent = "Please enter your Dob";
         isvalid = false;
     }
     else if (pnum.length == 0 || isNaN(pnum) || pnum.length != 10) {
-        pnumErr.textContent = "Please Enter your number correctly";
+        pnumErr.textContent = "Please enter your number correctly";
         isvalid = false;
     }
     else if (!chgender) {
-        genderErr.textContent = "Please choose your Gender";
+        genderErr.textContent = "Please choose your gender";
         isvalid = false;
     }
     else if (stret === "") {
@@ -110,12 +126,20 @@ function validateForm() {
         postErr.textContent = "Please Enter your post code";
         isvalid = false;
     }
+    else if (country == "") {
+        countryErr.textContent = "Please Enter your country ";
+        isvalid = false;
+    }
     else if (state === "") {
         stateErr.textContent = "Please Enter state ";
         isvalid = false;
     }
-    else if (region === "") {
+    else if (region == "") {
         regionErr.textContent = "Please Enter your region ";
+        isvalid = false;
+    }
+    else if (!filee) {
+        fileErr.textContent = "Please enter your document ";
         isvalid = false;
     }
     else if (password === "") {
@@ -134,7 +158,7 @@ function validateForm() {
         passErr.textContent = "You have to include a numbers";
         isvalid = false;
     }
-    else if (password.length <= 8) {
+    else if (password.length <= 7) {
         passErr.textContent = "Minimun length of password is 8";
         isvalid = false;
     }
@@ -151,7 +175,6 @@ function validateForm() {
         isvalid = false;
     }
 
-
     if (isvalid) {
         isTrue = true;
     }
@@ -161,12 +184,15 @@ function validateForm() {
 
     if (isvalid) {
         alert("form submitted successfully");
+        // var x = document.getElementById("snackbar");
+        // x.className = "show";
+        // setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
     else {
         return false;
     }
 
-    console.log(fname, lname, email, dob, pnum);
+    // console.log(fname, lname, email, dob, pnum);
 
 }
 
@@ -175,6 +201,7 @@ function validateForm() {
 var letterNo = document.getElementById("letter-no");
 var spSymbol = document.getElementById("sp-symbol");
 var email = document.getElementById("email");
+
 
 email.onfocus = function () {
     document.getElementById("message-email").style.display = "block";
@@ -186,7 +213,8 @@ email.onblur = function () {
 
 email.onkeyup = function () {
     // Validate Number capability
-    if (email.value.length <= 18 && email.value.length > 0) {
+    console.log(email.value.length);
+    if (email.value.length <= 30) {
         letterNo.classList.remove("invalid");
         letterNo.classList.add("valid");
     } else {
@@ -194,7 +222,7 @@ email.onkeyup = function () {
         letterNo.classList.add("invalid");
     }
 
-    if (email.value.includes('@gmail') && email.value.length >= 5) {
+    if (email.value.includes('@')) {
         spSymbol.classList.remove("invalid");
         spSymbol.classList.add("valid");
     }
@@ -209,7 +237,7 @@ email.onkeyup = function () {
 
 var phnum = document.getElementById('pnum');
 var phoneno = document.getElementById('phone-no');
-var charactersymbol = document.getElementById('character-symbol');
+// var charactersymbol = document.getElementById('character-symbol');
 var emptys = document.getElementById('empty-s');
 
 phnum.onfocus = function () {
@@ -228,16 +256,6 @@ pnum.onkeyup = function () {
     if (phnum.value.length != 10) {
         phoneno.classList.add('invalid');
         phoneno.classList.remove('valid');
-    }
-    else {
-        phoneno.classList.add('valid');
-        phoneno.classList.remove('invalid');
-    }
-
-    //check
-    if (isNaN(pnumm)) {
-        charactersymbol.classList.add('invalid');
-        charactersymbol.classList.remove('valid');
     }
     else {
         phoneno.classList.add('valid');
@@ -344,7 +362,7 @@ email.onblur = function () {
 
 email.onkeyup = function () {
     // Validate Number capability
-    if (email.value.length <= 18 && email.value.length > 0) {
+    if (email.value.length <= 30 && email.value.length > 0) {
         letterNo.classList.remove("invalid");
         letterNo.classList.add("valid");
     } else {
@@ -363,32 +381,23 @@ email.onkeyup = function () {
 }
 
 
-//toaster
-//json
-//
 let form = document.getElementById('formsubmission');
-
-let table = document.getElementById('table');
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
     submit();
 })
 
+var selectRow = null;
+var formData ;
 const submit = () => {
 
+    formData = readFormData();
+    // console.log(formData);
 
-    // console.log(fname, lname, email, dob, pnum);
-    let tableref = document.getElementById('table');
+    let tableref = document.getElementById('table').getElementsByTagName('tbody')[0];
 
-    var update = document.createElement('button');
-    update.classList.add('green', 'btn-prop');
-    update.innerHTML = "Update";
-    var del = document.createElement('button');
-    del.classList.add('red', 'btn-prop');
-    del.innerHTML = "Delete";
-
-    let newRow = tableref.insertRow(-1);
+    let newRow = tableref.insertRow(tableref.length);
 
     let newCell1 = newRow.insertCell(0);
     let newCell2 = newRow.insertCell(1);
@@ -398,21 +407,177 @@ const submit = () => {
     let newCell6 = newRow.insertCell(5);
     let newCell7 = newRow.insertCell(6);
 
-    console.log(update);
-    // newCell6.appendChild('update');
+
     if (isTrue) {
-        newCell1.innerText = fname.value;
-        newCell2.innerText = lname.value;
-        newCell3.innerText = email.value
-        newCell4.innerText = lname.value;
-        newCell5.innerText = email.value;
-        newCell6.appendChild(update);
-        newCell7.appendChild(del);
+        if (selectRow == null) {
+            newCell1.innerText = fname.value;
+            newCell2.innerText = lname.value;
+            newCell3.innerText = email.value
+            newCell4.innerText = dob.value;
+            newCell5.innerText = pnum.value;
+            newCell6.innerHTML = `<button onClick = "onEdit(this)">Update</button>`;
+            newCell7.innerHTML = `<button onClick = "onDelete(this)">Delete</button>`;
+            // console.log(selectRow);
+            resetForm();
+            
+        }
+        else {
+            updateRecord(formData);
+            console.log("I have updated");
+        }
     }
 }
 
-function delRow(r){
-  var i = r.parentNode.parentNode.rowindex;
 
-  document.getElementById('table').deleteRow(i);
+function readFormData() {
+    var formData = {};
+    formData["fname"] = document.getElementById('fname').value;
+    formData["lname"] = document.getElementById('lname').value;
+    formData["email"] = document.getElementById('email').value;
+    formData["dob"] = document.getElementById('dob').value;
+    formData["pnum"] = document.getElementById('pnum').value;
+
+    // ele = document.getElementsByName('gender');
+    // genderVal = "";
+    // for (i = 0; i < ele.length; i++) {
+    //     if (ele[i].checked) {
+    //         genderVal = ele[i].value;
+    //     }
+    // }
+
+    // console.log(genderVal);
+    // formData['gender'] = genderVal;
+
+    formData["street"] = document.getElementById('street-no').value;
+    formData["ciVillage"] = document.getElementById('ci-village').value;
+    formData["post"] = document.getElementById('post-code').value;
+    formData["country"] = document.getElementById('country').value;
+    formData["state"] = document.getElementById('state').value;
+    formData["region"] = document.getElementById('region').value;
+    formData["password"] = document.getElementById('password');
+    formData["repassword"] = document.getElementById("check-pass-box");
+    // console.log(formData);
+    return formData;
 }
+
+function resetForm() {
+    document.getElementById('fname').value = "";
+    document.getElementById('lname').value = "";
+    document.getElementById('dob').value = "";
+    document.getElementById('email').value = "";
+    document.getElementById('pnum').value = "";
+    gender = document.getElementsByName('gender');
+    for (i = 0; i < gender.length; i++) {
+        if (gender[i].checked) {
+            gender[i].checked = false;
+        }
+    }
+    document.getElementById('street-no').value = "";
+    document.getElementById('ci-village').value = "";
+    document.getElementById('post-code').value = "";
+    document.getElementById('state').value = "";
+    document.getElementById('country').value = "";
+    document.getElementById('region').value = "";
+    document.getElementById('file').value = "";
+
+    document.getElementById('password').disabled = true;
+    document.getElementById('password').type = 'password'
+    document.getElementById('confirm-password').disabled = true;
+    document.getElementById('check-pass-box').checked = false;
+    document.getElementById('pass-box').disabled = true;
+    document.getElementById('pass-box').checked = false;
+    selectRow = null;
+
+}
+
+function onEdit(td) {
+    console.log(formData);
+    selectRow = td.parentElement.parentElement;
+    // console.log(selectRow);/
+    document.getElementById('fname').value = selectRow.cells[0].innerHTML;
+    document.getElementById('lname').value = selectRow.cells[1].innerHTML;
+    document.getElementById('email').value = selectRow.cells[2].innerHTML;
+    document.getElementById('dob').value = selectRow.cells[3].innerHTML;
+    document.getElementById('pnum').value = selectRow.cells[4].innerHTML;
+
+    document.getElementById('street-no').value = formData.street;
+
+    document.getElementById('ci-village').value = formData.ciVillage;
+    document.getElementById('post-code').value = formData.post;
+    document.getElementById('state').value = formData.state;
+    document.getElementById('country').value = formData.country;
+    document.getElementById('region').value = formData.region;
+
+
+}
+
+function updateRecord(formData) {
+    selectRow.cells[0].innerHTML = formData.fname;
+    selectRow.cells[1].innerHTML = formData.lname;
+    selectRow.cells[2].innerHTML = formData.email;
+    selectRow.cells[3].innerHTML = formData.dob;
+    selectRow.cells[4].innerHTML = formData.pnum;
+
+    resetForm();
+}
+
+function onDelete(td) {
+    if (confirm('Are your sure to delete this record ?')) {
+        row = td.parentElement.parentElement;
+        document.getElementById('table').deleteRow(row.rowIndex);
+        resetForm();
+    }
+}
+
+
+// var countrystate = {
+//     India: [
+// "Andhra Pradesh",
+// "Arunachal Pradesh",
+// "Assam",
+// "Bihar",
+// "Chhattisgarh",
+// "Goa",
+// "Gujarat",
+// "Haryana",
+// "Himachal Pradesh",
+//     ],
+//     china: ["Anhui", "Fujian", "Gansu", "Jilin"]
+//     ,
+//     Australia: [
+//         "Australian Capital Territory",
+//         "New South Wales",
+//         "Northern Territory",
+//         "Queensland",
+//         "South Australia",
+//         "Tasmania",
+//         "Western Australia",
+//         "External Territories",],
+//     USA:[
+//         "Alabama","Alaska","Arizona","Delaware","Florida","Georgia","Hawaii","Idaho","Illinois","Indiana",
+//     ],
+//     Russia:[
+//        "Bashkortostan","Irkutsk Oblast","Belgorod Oblast","Amur Oblast",
+//     ]
+// }
+
+// window.onload = function(){
+//     const selectCountry = document.getElementById('country');
+//     const selectState = document.getElementById('state');
+
+//     const selects = document.querySelectorAll('select');
+
+//     selectCountry.disabled = true;
+//     selectState.disabled = true;
+
+//     selects.forEach(select => {
+//         if(select.disabled = true){
+//             select.style.cursor = "auto";
+//         }
+//     })
+
+//     for(let country in countrystate){
+//         console.log(country);
+//         selectCountry.options[selectCountry.options.length] = new Option(country, country);
+//     }
+// }
