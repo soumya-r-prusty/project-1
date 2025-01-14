@@ -437,16 +437,12 @@ function readFormData() {
     formData["dob"] = document.getElementById('dob').value;
     formData["pnum"] = document.getElementById('pnum').value;
 
-    // ele = document.getElementsByName('gender');
-    // genderVal = "";
-    // for (i = 0; i < ele.length; i++) {
-    //     if (ele[i].checked) {
-    //         genderVal = ele[i].value;
-    //     }
-    // }
-
-    // console.log(genderVal);
-    // formData['gender'] = genderVal;
+    var ele = document.getElementsByName('gender');
+    for (i = 0; i < ele.length; i++) {
+        if (ele[i].checked) {
+            formData['gender'] = ele[i].value;
+        }
+    }
 
     formData["street"] = document.getElementById('street-no').value;
     formData["ciVillage"] = document.getElementById('ci-village').value;
@@ -454,6 +450,7 @@ function readFormData() {
     formData["country"] = document.getElementById('country').value;
     formData["state"] = document.getElementById('state').value;
     formData["region"] = document.getElementById('region').value;
+    formData['file'] = document.getElementById('file').value;
     formData["password"] = document.getElementById('password');
     formData["repassword"] = document.getElementById("check-pass-box");
     // console.log(formData);
@@ -480,11 +477,9 @@ function resetForm() {
     document.getElementById('region').value = "";
     document.getElementById('file').value = "";
 
-    document.getElementById('password').disabled = true;
-    document.getElementById('password').type = 'password'
-    document.getElementById('confirm-password').disabled = true;
+    document.getElementById('password').value = "";
+    document.getElementById('confirm-password').value = "";
     document.getElementById('check-pass-box').checked = false;
-    document.getElementById('pass-box').disabled = true;
     document.getElementById('pass-box').checked = false;
     selectRow = null;
 
@@ -499,7 +494,14 @@ function onEdit(td) {
     document.getElementById('email').value = selectRow.cells[2].innerHTML;
     document.getElementById('dob').value = selectRow.cells[3].innerHTML;
     document.getElementById('pnum').value = selectRow.cells[4].innerHTML;
-
+    
+    gender = document.getElementsByName('gender');
+    for(let i=0;i<gender.length;i++){
+        if(gender[i].value == formData.gender){
+            gender[i].checked = true;
+        }
+    }
+    
     document.getElementById('street-no').value = formData.street;
 
     document.getElementById('ci-village').value = formData.ciVillage;
@@ -507,8 +509,10 @@ function onEdit(td) {
     document.getElementById('state').value = formData.state;
     document.getElementById('country').value = formData.country;
     document.getElementById('region').value = formData.region;
+    // document.getElementById('file').files = formData.file;
+    // document.getElementById('file').files = formData.file;
 
-
+    document.getElementById('submit').value = "Update";
 }
 
 function updateRecord(formData) {
@@ -517,7 +521,8 @@ function updateRecord(formData) {
     selectRow.cells[2].innerHTML = formData.email;
     selectRow.cells[3].innerHTML = formData.dob;
     selectRow.cells[4].innerHTML = formData.pnum;
-
+    document.getElementById('submit').value = "Submit";
+    
     resetForm();
 }
 
