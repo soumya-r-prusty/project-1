@@ -237,7 +237,9 @@ td {
 table {
     border-collapse: collapse;
 }
-
+td{
+    padding: .3rem;
+}
 .table-div {
     margin-left: 50px;
     padding: 10px;
@@ -246,12 +248,22 @@ table {
     /* display: none; */
 }
 
+.error{
+    border:2px solid red;
+}
+
+.error-message{
+    color: #f00;
+    font-size: 12px;
+    margin-top: 5px;
+}
 table>caption {
     font-size: 2rem;
 }
 
 .red {
     background-color: red;
+    width: 100%;
 }
 
 .btn-prop {
@@ -263,6 +275,7 @@ table>caption {
 
 .green {
     background-color: green;
+    width: 100%;
 }
 
 

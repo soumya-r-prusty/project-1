@@ -6,18 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register</title>
     <link rel="stylesheet" href="style.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
     <section class="box">
         <header class="regform">
             Registration form
         </header>
-        <form action="" class="form" onsubmit="event.preventDefault();  return validateForm(); " onreset="resetAll()" method="get" id="formsubmission" >
+          <form action="" class="form" onsubmit="event.preventDefault(); return validateForm()" onreset="resetAll()" method="get" id="formsubmission" >
             <div class="out-box">
                 <div class="input-box">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="fname" placeholder="First Name" autofocus/>
-                    <span id="fname-error" class="ferror-message"></span>
+                    <span id="fname-error" class="ferror-message">required</span>
                 </div>
                 <div class="input-box" >
                     <label for="lname">Last Name</label>
@@ -98,11 +99,11 @@
                     </div>
                     <div class="input-box">
                         <label for="Country">Country</label>
-                        <select class="select-box" id="country">
+                        <select class="select-box" id="country" name="country">
                             <option value="">Select your country</option>
-                            <option value="amr">America</option>
-                            <option value="jpn">Japan</option>
-                            <option value="chi">China</option>
+                            <option value="america">America</option>
+                            <option value="japan">Japan</option>
+                            <option value="china">China</option>
                             <option value="russsia">Russia</option>
                         </select>
                 <span id="country-error" class="country-message"></span>
@@ -146,7 +147,7 @@
                 </div>
 
                 <div class="ch-box">
-                    <input id="pass-box" type="checkbox" />
+                    <input id="pass-box" type="checkbox" name="pass-box"/>
                     <label for="checkbox">show password</label>
                 </div>
             </div>
