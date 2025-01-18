@@ -9,21 +9,32 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body>
+    <div class="out-div">
+        
     <section class="box">
+
         <header class="regform">
             Registration form
         </header>
-          <form action="" class="form" onsubmit="event.preventDefault(); return validateForm()" onreset="resetAll()" method="get" id="formsubmission" >
+        <div class="indicator">
+            <span class="line"><span class="inner-line"></span></span>
+            <p class="active">1</p>
+            <p>2</p>
+            <p>3</p>
+        </div>
+          <form action="" class="form" onsubmit="event.preventDefault(); return passField()" onreset="resetAll()" method="get" id="formsubmission" >
+            <div class="tab">
+                <h4>Personal Information</h4>
             <div class="out-box">
                 <div class="input-box">
                     <label for="fname">First Name</label>
                     <input type="text" id="fname" name="fname" placeholder="First Name" autofocus/>
-                    <span id="fname-error" class="ferror-message">required</span>
+                    <span id="fname-error" class="error"></span>
                 </div>
                 <div class="input-box" >
                     <label for="lname">Last Name</label>
                     <input type="text" id="lname" name="lname" placeholder="Last Name" autofocus />
-                    <span id="lname-error" class="lerror-message"></span>
+                    <span id="lname-error" class="error"></span>
                 </div>
             </div>
             <div class="input-box">
@@ -35,15 +46,15 @@
                     <p id="letter-no" class="invalid"><b>Must contain within 30</b> letters</p>
                     <p id="sp-symbol" class="invalid"><b>Must contain @</b></p>
                   </div>
-                  <span id="email-error" class="dob-message"></span>
+                  <span id="email-error" class="error"></span>
             </div>
-            </div>
-
+            
+        
             <div class="out-box">
                 <div class="input-box">
                     <label for="dob">Date of Birth</label>
                     <input type="date" id="dob" name="dob" placeholder="Date of Birth" autofocus />
-                    <span id="dob-error" class="dob-message"></span>
+                    <span id="dob-error" class="error"></span>
                 </div>
                 <div class="input-box">
                     <label for="pnum">Phone Number</label>
@@ -54,40 +65,43 @@
                         <!-- <p id="character-symbol" class="invalid"><b>Must not contain any character </b></p> -->
                         <p id="empty-s" class="invalid"><b>Must not be empty</b></p>
                       </div>
-                      <span id="p-error" class="pnum-message"></span>
+                      <span id="p-error" class="error"></span>
                 </div>
             </div>
-
+        
             <div class="Gender-box">
                 <h3>Gender</h3>
                 <div class="gender-inner-box">
                     <div class="gender-option">
                         <label for="male">Male</label>
-                        <input type="radio" id="male" name="gender" />
+                        <input type="radio" id="male" name="gender" value="male"/>
                     </div>
                     <div class="gender-option">
                         <label for="female">Female</label>
-                        <input type="radio" id="female" name="gender" />
+                        <input type="radio" id="female" name="gender" value="female"/>
                     </div>
                     <div class="gender-option">
                         <label for="others">Others</label>
-                        <input type="radio" id="others" name="gender" />
+                        <input type="radio" id="others" name="gender" value="others"/>
                     </div>
                 </div>
-                <span id="gender-error" class="pnum-message"></span>
+                <span id="gender-error" class="error"></span>
             </div>
+        </div>
+        
+        <div class="tab">
             <div class="address">
-                <h3>Address</h3>
+                <h4>Address</h4>
                 <div class="out-box">
                     <div class="input-box">
                         <label for="street-no">Street-no</label>
                         <input type="number" id="street-no" name="street-no" placeholder="street-no" />
-                <span id="street-error" class="street-message"></span>
+                <span id="street-error" class="error"></span>
                     </div>
                     <div class="input-box">
                         <label for="ci-village">City/Village</label>
                         <input type="text" id="ci-village" name="ci-village" placeholder="City/Village" />
-                <span id="cv-error" class="vilmessage"></span>
+                <span id="cv-error" class="error"></span>
                     </div>
                 </div>
 
@@ -95,7 +109,7 @@
                     <div class="input-box">
                         <label for="post-code" required>Postal-Code</label>
                         <input type="text" id="post-code" name="post-code" placeholder="Post-code" />
-                        <span id="pcode-error" class="pcode-message"></span>
+                        <span id="pcode-error" class="error"></span>
                     </div>
                     <div class="input-box">
                         <label for="Country">Country</label>
@@ -106,7 +120,7 @@
                             <option value="china">China</option>
                             <option value="russsia">Russia</option>
                         </select>
-                <span id="country-error" class="country-message"></span>
+                <span id="country-error" class="error"></span>
                     </div>
                 </div>
                 <div class="out-box">
@@ -114,12 +128,12 @@
                     <div class="input-box">
                         <label for="state">State</label>
                         <input type="text" id="state" name="state" placeholder="State" />
-                        <span id="state-error" class="state-message"></span>
+                        <span id="state-error" class="error"></span>
                     </div>
                     <div class="input-box">
                         <label for="region">Region</label>
                         <input type="text" id="region" name="region" placeholder="Region" />
-                    <span id="region-error" class="country-message"></span>
+                    <span id="region-error" class="error"></span>
                     </div>
                 </div>
             </div>
@@ -129,13 +143,16 @@
                     <h3>Enter your documnet</h3>
                 </label>
                 <input type="file" id="file" name="file" />
-                <span id="file-error" class="file-message"></span>
+                <span id="file-error" class="error"></span>
             </div>
+        </div>
+        <div class="tab">
+            <h4>Password details</h4>
             <div class="out-box">
                 <div class="input-box">
                     <label for="password"><b>Password</b></label>
                     <input type="password" id="password" name="password" placeholder="password" autofocus />
-                    <span id="pass-error" class="country-message"></span>
+                    <span id="pass-error" class="error"></span>
 
                     <div id="message">
                         <h3>Password must contain the following:</h3>
@@ -157,21 +174,25 @@
                     <label for="confirm-password">Confirm Password</label>
                     <input type="password" id="confirm-password" name="confirm-password" placeholder="confirm-password"
                         autofocus />
-                        <span id="cpass-error" class="cpass-message"></span>
+                        <span id="cpass-error" class="error"></span>
                 </div>
             </div>
             <div class="check-box" aria-required="true">
                 <input type="checkbox" name="check-box" id="check-pass-box"/>
                 <label for="check-pass-box" id="repass-box">i agree with the <a href="/">terms and condition</a></label>
-                <span id="check-pass-error" class="check-pass-message"></span>
+                <span id="check-pass-error" class="error"></span>
             </div>
-            <div class="input-box">
-                <input type="submit" value="Submit" id="submit"/>
+        </div>
+            <div class="input-box-btn">
+                <button type="button" class="prev">Previous</button>
+                <button type="button" class="next">Next</button>
+                <button type="submit" class="submit">Submit</button>
             </div>
         </form>
     </section>
+</div>
 
-
+   
     <div class="table-div">
         <table style="width:100%" id="table">
             <caption>My Details</caption>
