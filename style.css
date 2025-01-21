@@ -8,9 +8,6 @@
 
 body {
     min-height: 100vh;
-    /* display: flex;
-    justify-content:center;
-    align-items: center; */
     display: grid;
     grid-template-columns: 2fr 2fr;
 
@@ -18,30 +15,49 @@ body {
 
 .box {
     position: relative;
-    max-width: 700px;
+    max-width: 800px;
     width: 100%;
     padding: 10px;
     border-radius: 10px;
     cursor: grab;
     opacity: 1;
-    box-shadow: 20px 10px 30px 30px rgb(185, 190, 192);
-    margin-left: 4rem;
-    margin-top: 2rem;
-    /* height: 80%; */
-
+    box-shadow: 60px 80px 80px 80px rgb(185, 190, 192);
+    margin:1rem;
+    min-height: 80%;
+   /* border: 1px solid black; */
+   display: flex;
+   flex-direction: column;
 }
 
 .out-div {
-    /* border: 1px solid black; */
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #fff;
-    margin-right: 80px;
+    max-width: 100%;
+    /* margin-right: 80px; */
     
 }
 
+header {
+    font-weight: 700;
+    margin-bottom: 20px;
+    border: 1px solid lightblue;
+    /* min-height: 30%; */
+}
+
+h4 {
+    font-weight:400;
+    border: 1px solid lightblue;
+    text-align: center;
+    font-size: 2rem;
+    background-color: rgb(233, 229, 238);
+    border-radius: 30px;
+    margin-top:20px;
+    width:100%;
+    min-height: 34px;
+}
 
 /* step up form */
 
@@ -50,7 +66,11 @@ body {
     display: flex;
     justify-content: space-between;
     position: relative;
+    box-shadow: 10px 5px 5px 1px rgb(185, 190, 192);
+    border-radius: 10px;
+    border: 1px solid rgb(228, 232, 233);
     /* margin-bottom: 34px; */
+    /* margin-bottom: 20px; */
 }
 
 .indicator .line {
@@ -83,32 +103,47 @@ body {
 .indicator p {
     position: relative;
     z-index: 20;
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
     border: 4px solid #ddd;
     background: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: 600;
+    font-weight:bold;
+    color: #6337a0;
     border-radius: 50%;
     transition: .3s;
+    text-align: center;
+
 }
 
 .indicator p.active {
     border-color: #8c40a5;
-    color: var(--purple);
+    color: black;
 }
 
 
 /*  */
-
+.password-tab{
+ min-height: 450px;
+ display: flex;
+ flex-direction: column;
+ justify-content: flex-start;
+ gap: 5px;
+}
 
 
 /* .tab */
 .tab {
     display: none;
-    height: 90%;
+    min-height:500px;
+    /* height: 700px; */
+    border: 1px solid lightblue;
+    padding: 5px;
+    margin: 10px;
+    
+    box-shadow: 10px 10px 10px 10px #f0eaea;
 }
 
 .tab.show {
@@ -120,19 +155,23 @@ body {
 /* button */
 .input-box-btn {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 10%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    gap: 24%;
     margin-top: 20px;
+    bottom: 0;
+    margin-top: 30px;
 }
 
 .input-box-btn button {
     padding: 10px 10px;
     border: none;
     outline: none;
-    width: 100%;
-    /* background: #a963be; */
+    width: 40%;
     cursor: pointer;
+    margin-left: 10px;
+    margin-right: 10px;
+    max-width: 40%;
 }
 
 .input-box-btn button.prev {
@@ -149,19 +188,6 @@ body {
 
 /* button */
 
-header {
-    font-weight: 700;
-    margin-bottom: 1rem;
-}
-
-h4 {
-    font-weight: 100;
-    border: 1px solid lightblue;
-    text-align: center;
-    font-size: 1.5rem;
-    background-color: rgb(233, 229, 238);
-    border-radius: 30px
-}
 
 .box .form {
     margin-top: 30px;
@@ -208,10 +234,11 @@ h4 {
 .form .out-box {
     display: flex;
     column-gap: 15px;
+    margin: 10px 0px 15px 0px;
 }
 
 .Gender-box {
-    margin-top: 10px;
+    margin-top: 20px;
     max-width: 100%;
 }
 
@@ -220,17 +247,15 @@ h4 {
     align-items: center;
     column-gap: 10px;
     margin-top: 5px;
-    /* margin-bottom: 10px; */
 }
 
 /* gender box gender option gender */
 .gender-option {
     display: flex;
     align-items: center;
-    column-gap: 10px;
+    column-gap: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
-    /* font-stretch: expanded; */
     row-gap: 15px;
     transition: 0.5s;
 }
@@ -362,8 +387,8 @@ span {
 
 .table-div {
     padding: 10px;
-    border: 1px solid r#dee7ec;
-    margin-right: 20px;
+    border: 1px solid black;
+    /* margin-right: 20px; */
     overflow-x: auto;
     box-shadow: #a47cb1;
     background-color: rgb(241, 233, 233);
@@ -478,4 +503,16 @@ table>caption {
     .box {
         margin-left: 0;
     }
+}
+
+@media screen and (max-width:650px){
+   header{
+    margin-bottom: 30px;
+   }
+   .indicator{
+    margin-bottom: 10px;
+   }
+   .input-box-btn{
+    margin-top: 15px;
+   }
 }

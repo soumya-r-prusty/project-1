@@ -449,7 +449,52 @@ function validate(validateTab) {
 
   let isValidTab = true;
 
+  var numbers = /[0-9]/g;
+
   for (const key in validateTab) {
+    // console.log(key);
+
+    if (key === 'fname' || key === 'lname') {
+      if (validateTab[key].match(numbers)) {
+        setError(key, 'numbers are not allowed');
+        isValidTab = false;
+        return false;
+      }
+    }
+    if (key === 'email' && validateTab[key].length != 0) {
+      if (validateTab[key].length > 30) {
+        setError(key, 'length must not exceed 30');
+        isValidTab = false;
+        return false;
+      }
+      else if (!validateTab[key].includes('@')) {
+        setError(key, 'must include @');
+        isValidTab = false;
+        return false;
+      }
+    }
+
+    if (key === 'pnum') {
+      if (validateTab[key].length != 0) {
+        if (validateTab[key].length != 10) {
+          setError(key, 'You can enter 10 numbers');
+          isValidTab = false;
+          return false;
+        }
+        else if (!validateTab[key].match(numbers)) {
+          setError(key, 'only numbers are allowed');
+          console.log("Typed");
+          isValidTab = false;
+          return false;
+        }
+      }
+      console.log("Typed");
+    }
+    console.log("Typed");
+  }
+
+  for (const key in validateTab) {
+    console.log(key);
     if (validateTab[key] === "") {
       setError(key, key + " is required");
       isValidTab = false;
@@ -458,6 +503,9 @@ function validate(validateTab) {
       setSuccess(key);
     }
   }
+
+
+
 
   return isValidTab;
 }
@@ -491,6 +539,26 @@ const setSuccess = (element) => {
 
   inputctrl.classList.add('success');
   inputctrl.classList.remove('error');
+}
+
+
+
+function toFTab() {
+  i = 0;
+
+  for (let j = 0; j < alltab.length; j++) {
+    alltab[j].classList.remove('show');
+    indicatorItem[j].classList.remove('active');
+  }
+
+  alltab[i].classList.add('show');
+  indicator.style.width = `${i * 50}%`;
+  indicatorItem[i].classList.add('active');
+
+  prev.style.display = 'none';
+  submitBtn.style.display = 'none';
+  next.style.display = 'block';
+
 }
 
 next.addEventListener('click', function () {
@@ -670,6 +738,7 @@ function resetForm() {
   document.getElementById('pass-box').checked = false;
   selectRow = null;
 
+  toFTab();
 }
 
 //onEdit
@@ -782,41 +851,41 @@ function passField() {
     }, (3000));
     isTrue = false;
   }
-  else if(confirmpassword == ""){
+  else if (confirmpassword == "") {
     cpassError.innerText = "Confirm your password";
     setTimeout(function () {
       cpassError.innerText = "";
     }, (3000));
     isTrue = false;
   }
-else if(confirmpassword != password.value){
-  cpassError.innerText = "Please confirm Your password";
+  else if (confirmpassword != password.value) {
+    cpassError.innerText = "Please confirm Your password";
     setTimeout(function () {
       cpassError.innerText = "";
     }, (3000));
 
-    console.log(confirmpassword.value,'',password.value);
+    console.log(confirmpassword.value, '', password.value);
     isTrue = false;
 
-}
-else if(!checkpassbox){
-  checkboxErr.innerText = "Please confirm Your password";
-  setTimeout(function () {
-    checkboxErr.innerText = "";
-  }, (3000));
-  isTrue = false;
-}
- if(isTrue){
-  isvalid = true;
- }else{
-  isvalid = false;
- }
+  }
+  else if (!checkpassbox) {
+    checkboxErr.innerText = "Please confirm Your password";
+    setTimeout(function () {
+      checkboxErr.innerText = "";
+    }, (3000));
+    isTrue = false;
+  }
+  if (isTrue) {
+    isvalid = true;
+  } else {
+    isvalid = false;
+  }
 
-  if(isTrue){
+  if (isTrue) {
     alert('form submitted successfully');
 
   }
-  else{
+  else {
     return false;
   }
 
@@ -836,30 +905,31 @@ const submit = () => {
 
 
   let istrue = false;
-  if(passField == true){
+  if (passField == true) {
     istrue = true;
   }
-  else{
+  else {
     istrue = false;
   }
 
   formData = readFormData();
- 
+
   let tableref = document.getElementById('table').getElementsByTagName('tbody')[0];
 
   let newRow = tableref.insertRow(tableref.length);
 
-  let newCell1 = newRow.insertCell(0);
-  let newCell2 = newRow.insertCell(1);
-  let newCell3 = newRow.insertCell(2);
-  let newCell4 = newRow.insertCell(3);
-  let newCell5 = newRow.insertCell(4);
-  let newCell6 = newRow.insertCell(5);
-  let newCell7 = newRow.insertCell(6);
-
-  console.log(istrue,'',selectRow);
+  console.log(istrue, '', selectRow);
   if (isvalid) {
+    console.log("selected");
     if (selectRow == null) {
+      let newCell1 = newRow.insertCell(0);
+      let newCell2 = newRow.insertCell(1);
+      let newCell3 = newRow.insertCell(2);
+      let newCell4 = newRow.insertCell(3);
+      let newCell5 = newRow.insertCell(4);
+      let newCell6 = newRow.insertCell(5);
+      let newCell7 = newRow.insertCell(6);
+
       newCell1.innerText = formData.fname;
       newCell2.innerText = lname.value;
       newCell3.innerText = email.value
